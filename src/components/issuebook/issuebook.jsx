@@ -12,11 +12,11 @@ class ISSUEBOOK extends Component {
                 <div className="col-md-6">
                     <form>
                         <div className="form-group">
-                            <label for="bookid">Book Id:</label>
+                            <label htmlFor="bookid">Book Id:</label>
                             <input type="number" className="form-control" id="bookid" placeholder="Enter bookid" name="bookid" />
                         </div>
                         <div className="form-group">
-                            <label for="bookid">Issued to:</label>
+                            <label htmlFor="bookid">Issued to:</label>
                             <input type="number" className="form-control" id="issuesto" placeholder="Issued to" name="issueid" />
                         </div>
                         <button type="submit" className="btn btn-default">Issue</button>

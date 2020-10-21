@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import ADDBOOK from '../addbook/addbook';
-import DELETEBOOK from '../deletebook/deletebook';
-import ISSUEBOOK from '../issuebook/issuebook';
-import RETURNBOOK from '../returnbook/returnbook';
-import VIEWBOOK from '../viewbook/viewbook';
+import { NavLink } from 'react-router-dom'
 
 class WRAPPER extends Component {
     constructor(props) {
@@ -16,14 +12,14 @@ class WRAPPER extends Component {
                 <nav className="navbar navbar-inverse">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="#">WELCOME TO MY LIBRARY</a>
+                            <a className="navbar-brand" >WELCOME TO MY LIBRARY</a>
                         </div>
                         <ul className="nav navbar-nav">
-                            <li className="active"><a href="#">ADD BOOK</a></li>
-                            <li><a href="#">VIEW BOOK</a></li>
-                            <li><a href="#">ISSUE BOOK</a></li>
-                            <li><a href="#">RETURN BOOK</a></li>
-                            <li><a href="#">DELETE BOOK</a></li>
+                            <li className="active"><a ><NavLink to={'addbook'}>ADD BOOK</NavLink></a></li>
+                            <li><a ><NavLink to={'viewbook'}>VIEW BOOK</NavLink></a></li>
+                            <li><a ><NavLink to={'issuebook'}>ISSUE BOOK</NavLink></a></li>
+                            <li><a ><NavLink to={'returnbook'}>RETURN BOOK</NavLink></a></li>
+                            <li><a ><NavLink to={'deletebook'}>DELETE BOOK</NavLink></a></li>
                         </ul>
                     </div>
                 </nav>
