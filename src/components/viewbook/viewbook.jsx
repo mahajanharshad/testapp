@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class VIEWBOOK extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookslist: [{ 'bookid': 1, 'title': 'You Don`\`t know Javascript', 'author': 'Kyle Samson', 'status': 'issued' }],
+            bookslist: this.props.booksList.addedbooks
         }
     }
 
@@ -45,4 +46,11 @@ class VIEWBOOK extends Component {
     }
 }
 
-export default VIEWBOOK;
+
+const mapStateToProps = function(state) {
+    return {
+        booksList: state 
+    }
+}
+
+export default connect(mapStateToProps, null)(VIEWBOOK);

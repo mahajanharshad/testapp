@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { returnBook } from '../../actions';
 
 class RETURNBOOK extends Component {
     constructor(props) {
@@ -6,7 +8,7 @@ class RETURNBOOK extends Component {
         this.state = {
             bookid: 0,
             status: '',
-            returnBookList: [{ 'bookid': 1, 'status': '' }],
+            returnBookList: this.props.booksList.addedbooks
         }
     }
 
@@ -22,13 +24,15 @@ class RETURNBOOK extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault();
         const {bookid, issuedto, returnBookList} = this.state;
+        var self = this;
 
         if(bookid.length){
-            var newItem = {'bookid': bookid, 'status': 'Available'};
-            returnBookList.push(newItem);
-            this.setState({
-                returnBookList
+            returnBookList.map((data) => {
+                if(data.bookid === self.bookid){
+                    alert('sdadd')
+                }
             })
+            this.props.returnBook(bookid, returnBookList)
             var form = document.getElementById("RetunBookForm");
             form.reset();
         }
@@ -53,4 +57,14 @@ class RETURNBOOK extends Component {
     }
 }
 
-export default RETURNBOOK;
+const mapStateToProps = function(state) {
+    return {
+        booksList: state 
+    }
+}
+
+const mapDispatchToProps = {
+    returnBook
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RETURNBOOK);

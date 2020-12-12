@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addBook } from '../../actions';
+import getData from '../../helper/axios-client.js'
 
 class ADDBOOK extends Component {
     constructor(props) {
         super(props);
-
+        console.log(this.props);
         this.state = {
             bookid: 0,
             title: '',
             author: '',
             status: '',
-            bookslist: [{ 'bookid': 1, 'title': 'You Don`\`t know Javascript', 'author': 'Kyle Samson', 'status': 'issued' }],
+            bookslist: this.props.booksList.addedbooks
         }
     }
 
     onChangeHandler = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        
+
         this.setState({
             [name]: value
         })
@@ -24,14 +27,11 @@ class ADDBOOK extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
-        const {bookid, title, author, status, bookslist} = this.state;
+        const { bookid, title, author, status, bookslist } = this.state;
 
-        if(bookid.length && title.length && author.length && status.length){
-            var newItem = {'bookid': bookid, 'title':title, 'author':author, 'status':status};
-            bookslist.push(newItem);
-            this.setState({
-                bookslist
-            })
+        if (bookid.length && title.length && author.length && status.length) {
+            var newItem = { 'bookid': bookid, 'title': title, 'author': author, 'status': status };
+            this.props.addBook(newItem)
             var form = document.getElementById("addForm");
             form.reset();
         }
@@ -68,4 +68,14 @@ class ADDBOOK extends Component {
     }
 }
 
-export default ADDBOOK;
+const mapStateToProps = function(state) {
+    return {
+        booksList: state 
+    }
+}
+
+const mapDispatchToProps = {
+    addBook
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ADDBOOK);
