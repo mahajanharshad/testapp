@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addBook } from '../../actions';
-import getData from '../../helper/axios-client.js'
 
 class ADDBOOK extends Component {
     constructor(props) {
